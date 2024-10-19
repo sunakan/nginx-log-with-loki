@@ -2,10 +2,19 @@
 up: ## サーバーを起動
 	@docker compose up
 
-
 .PHONY: down
 down: ## サーバーを停止
 	@docker compose down
+
+.PHONY: clean-for-nginx
+clean-for-nginx: ## Nginxのlogをキレイにする
+	@rm -rf nginx/var/log/nginx/*.log
+
+.PHONY: clean-for-loki
+clean-for-loki: ## Lokiが保存したデータをキレイにする
+	@rm -rf loki/loki/
+	@mkdir -p loki/loki/
+	@touch loki/loki/.gitkeep
 
 ################################################################################
 # Utility-Command help
