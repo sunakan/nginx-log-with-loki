@@ -50,3 +50,16 @@ services:
       - type: bind
         source: ${PWD}/loki/loki/
         target: /loki/
+
+  #
+  # Grafana(GrafanaのLGTMスタックのG)
+  # 可視化ツール
+  #
+  grafana:
+    image: grafana/grafana:11.2.2
+    ports:
+      - 3000:3000
+    volumes:
+      - type: bind
+        source: ${PWD}/grafana/etc/grafana/provisioning/datasources/
+        target: /etc/grafana/provisioning/datasources/
