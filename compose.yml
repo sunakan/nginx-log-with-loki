@@ -5,6 +5,8 @@ services:
     image: nginx:1.27
     ports:
       - 80:80
+    environment:
+      TZ: Asia/Tokyo
     volumes:
       - type: bind
         source: ${PWD}/nginx/etc/nginx/nginx.conf
@@ -30,6 +32,8 @@ services:
     image: fluent/fluent-bit:3.1.9-debug
     ports:
       - "24224:24224"
+    environment:
+      TZ: Asia/Tokyo
     volumes:
       - type: bind
         source: ${PWD}/fluent-bit/etc/
@@ -46,6 +50,8 @@ services:
     image: grafana/loki:3.2.1
     ports:
       - 3100:3100
+    environment:
+      TZ: Asia/Tokyo
     volumes:
       - type: bind
         source: ${PWD}/loki/loki/
@@ -59,6 +65,8 @@ services:
     image: grafana/grafana:11.2.2
     ports:
       - 3000:3000
+    environment:
+      TZ: Asia/Tokyo
     volumes:
       - type: bind
         source: ${PWD}/grafana/etc/grafana/provisioning/datasources/
