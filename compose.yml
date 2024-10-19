@@ -15,6 +15,17 @@ services:
       - type: bind
         source: ${PWD}/nginx/var/log/nginx/
         target: /var/log/nginx/
+
+  #
+  # Fluent-Bit
+  # Log収集ツール
+  # Grafana/Promtail を利用していない理由:
+  # - Fluent-BitにはLokiプラグインがデフォであるらしく、特別になにかDLする必要はない
+  # - 実務でも利用している
+  # - Fluentdは過去に触ってたので、ちょっとだけ知っている
+  # シンプルな方はPromtailと評価されている記事をみたが、まずはFluent-Bitでいく
+  # 辛くなったり、Promtailを利用してGrafanaで統一したくなったりしたら検討する
+  #
   fluentbit:
     image: fluent/fluent-bit:3.1.9-debug
     ports:
@@ -26,6 +37,11 @@ services:
       - type: bind
         source: ${PWD}/nginx/var/log/nginx/
         target: /var/log/nginx/
+
+  #
+  # Loki(GrafanaのLGTMスタックのL)
+  # Logのストレージと検索
+  #
   loki:
     image: grafana/loki:3.2.1
     ports:
