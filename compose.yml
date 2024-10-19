@@ -15,3 +15,11 @@ services:
       - type: bind
         source: ${PWD}/nginx/var/log/nginx/
         target: /var/log/nginx/
+  fluentbit:
+    image: fluent/fluent-bit:3.1.9
+    ports:
+      - "24224:24224"
+    volumes:
+      - type: bind
+        source: ${PWD}/nginx/var/log/nginx/
+        target: /var/log/nginx/
