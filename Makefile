@@ -1,5 +1,7 @@
 .PHONY: up
 up: ## サーバーを起動
+	@make clean-for-nginx
+	@make clean-for-loki
 	@docker compose up
 
 .PHONY: down
@@ -15,7 +17,6 @@ clean-for-loki: ## Lokiが保存したデータをキレイにする
 	@rm -rf loki/loki/
 	@mkdir -p loki/loki/
 	@touch loki/loki/.gitkeep
-
 
 ################################################################################
 # 負荷テスト
