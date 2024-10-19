@@ -1,4 +1,9 @@
+# Nginxのログデータ
 !nginx/var/log/nginx/
 nginx/var/log/nginx/*
+
+# Lokiに保存されるログデータ
+!loki/loki/
+loki/loki/*
 
 !.gitkeep
