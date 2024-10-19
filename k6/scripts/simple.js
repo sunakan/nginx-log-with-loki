@@ -13,4 +13,5 @@ export const options = {
 export default function () {
   let res = http.get("http://nginx:80/");
   check(res, { "status was 200": (r) => r.status == 200 });
+  sleep(1)
 }
