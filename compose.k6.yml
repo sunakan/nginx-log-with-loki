@@ -1,0 +1,9 @@
+---
+
+services:
+  k6:
+    image: grafana/k6:0.54.0
+    volumes:
+      - type: bind
+        source: ${PWD}/k6/scripts/
+        target: /scripts/
