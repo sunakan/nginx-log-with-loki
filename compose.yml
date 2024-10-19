@@ -30,3 +30,7 @@ services:
     image: grafana/loki:3.2.1
     ports:
       - 3100:3100
+    volumes:
+      - type: bind
+        source: ${PWD}/loki/loki/
+        target: /loki/
