@@ -26,3 +26,7 @@ services:
       - type: bind
         source: ${PWD}/nginx/var/log/nginx/
         target: /var/log/nginx/
+  loki:
+    image: grafana/loki:3.2.1
+    ports:
+      - 3100:3100
