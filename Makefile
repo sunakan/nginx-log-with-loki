@@ -24,6 +24,15 @@ clean-for-loki: ## Lokiが保存したデータをキレイにする
 	@touch loki/loki/.gitkeep
 
 ################################################################################
+# Loki単体に対してテスト
+################################################################################
+.PHONY: loki-sample
+loki-sample: ## Lokiにちゃんとログが送られているか確認
+	$(eval START=$(shell date -u +"%Y-%m-%dT00:00:00+09:00"))
+	$(eval END=$(shell date -u +"%Y-%m-%dT23:59:59+09:00"))
+	@curl -s "http://localhost:3100/loki/api/v1/query_range" --data-urlencode 'query={job="nginx.access"}' --data-urlencode 'start=${START}'   --data-urlencode 'end=${END}'   --data-urlencode 'limit=10' | jq '.data.result'
+
+################################################################################
 # 負荷テスト
 ################################################################################
 .PHONY: load-test
