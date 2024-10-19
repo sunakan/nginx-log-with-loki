@@ -41,6 +41,9 @@ services:
       - type: bind
         source: ${PWD}/nginx/var/log/nginx/
         target: /var/log/nginx/
+      - type: bind
+        source: ${PWD}/fluent-bit/var/log/fluent-bit/
+        target: /var/log/fluent-bit/
 
   #
   # Loki(GrafanaのLGTMスタックのL)

@@ -1,6 +1,7 @@
 .PHONY: up
 up: ## サーバーを起動
 	@make clean-for-nginx
+	@make clean-for-fluent-bit
 	@make clean-for-loki
 	@docker compose up
 
@@ -11,6 +12,10 @@ down: ## サーバーを停止
 .PHONY: clean-for-nginx
 clean-for-nginx: ## Nginxのlogをキレイにする
 	@rm -rf nginx/var/log/nginx/*.log
+
+.PHONY: clean-for-fluent-bit
+clean-for-fluent-bit: ## Fluent-Bitのlogをキレイにする
+	@rm -rf fluent-bit/var/log/fluent-bit/*.log
 
 .PHONY: clean-for-loki
 clean-for-loki: ## Lokiが保存したデータをキレイにする

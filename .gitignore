@@ -6,4 +6,8 @@ nginx/var/log/nginx/*
 !loki/loki/
 loki/loki/*
 
+# Fluent-Bitのログデータ
+!fluent-bit/var/log/fluent-bit/
+fluent-bit/var/log/fluent-bit/*
+
 !.gitkeep
